@@ -24,3 +24,6 @@ POST {{host}}/auth/logout
 ###
 POST {{host}}/auth/register
 
+###
+GET {{host}}/auth/profile
+

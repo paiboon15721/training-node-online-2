@@ -51,7 +51,19 @@ module.exports = r => {
     ctx.body = { token }
   })
 
+  r.get('/auth/profile', async ctx => {
+    const token = ctx.cookies.get('jwt')
+    if (!token) {
+      ctx.status = 400
+      ctx.body = 'jwt must be provided'
+      return
+    }
+    const user = await jwtVerify(token, process.env.JWT_SECRET)
+    ctx.body = user
+  })
+
   r.post('/auth/logout', async ctx => {
-    ctx.body = 'logout'
+    ctx.cookies.set('jwt', null)
+    ctx.body = 'Logout success'
   })
 }
