@@ -3,11 +3,12 @@ const mongoose = require('mongoose')
 require('./user')
 require('./post')
 
+const { MONGO_HOST, MONGO_PASSWORD, MONGO_USER } = process.env
+
 const user = 'paiboon'
-const password = 'mypassword'
 const dbName = `blogs${user}`
 
-const mongoUrl = `mongodb+srv://paiboon15721:${password}@cluster0.sqx0p.mongodb.net/${dbName}?retryWrites=true&w=majority`
+const mongoUrl = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/${dbName}?retryWrites=true&w=majority`
 
 const initMongoose = () =>
   new Promise((resolve, reject) => {
