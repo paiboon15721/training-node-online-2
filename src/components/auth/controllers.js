@@ -59,7 +59,8 @@ module.exports = r => {
       return
     }
     const user = await jwtVerify(token, process.env.JWT_SECRET)
-    ctx.body = user
+    const data = await User.findById(user.id)
+    ctx.body = data
   })
 
   r.post('/auth/logout', async ctx => {
