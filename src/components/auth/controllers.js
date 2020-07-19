@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { promisify } = require('util')
-const { User } = require('mongoose').models
+const { User, Post } = require('mongoose').models
+const { requireAuth } = require('./middlewares')
 
 const jwtSign = promisify(jwt.sign)
-const jwtVerify = promisify(jwt.verify)
 
 module.exports = r => {
   r.post('/auth/register', async ctx => {
@@ -51,16 +51,15 @@ module.exports = r => {
     ctx.body = { token }
   })
 
-  r.get('/auth/profile', async ctx => {
-    const token = ctx.cookies.get('jwt')
-    if (!token) {
-      ctx.status = 400
-      ctx.body = 'jwt must be provided'
-      return
-    }
-    const user = await jwtVerify(token, process.env.JWT_SECRET)
+  r.get('/auth/profile', requireAuth, async ctx => {
+    const { user } = ctx.state
     const data = await User.findById(user.id)
     ctx.body = data
+  })
+
+  r.get('/auth/posts', requireAuth, async ctx => {
+    const posts = await Post.find()
+    ctx.body = posts
   })
 
   r.post('/auth/logout', async ctx => {
