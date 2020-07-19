@@ -8,6 +8,10 @@ GET {{host}}/users
 
 ###
 
+GET {{host}}/users/5f13b4f093a5f903fcfb5412
+
+###
+
 POST {{host}}/users
 Content-Type: application/json
 
@@ -20,3 +24,14 @@ Content-Type: application/json
 ###
 
 DELETE {{host}}/users/5f13c6ec9cdf4030c071252c
+
+###
+
+PUT {{host}}/users/5f13b5def7ca550ec4edc950
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "edit password",
+  "name": "test"
+}

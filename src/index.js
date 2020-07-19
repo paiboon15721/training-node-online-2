@@ -22,6 +22,12 @@ r.get('/users', async ctx => {
   ctx.body = users
 })
 
+r.get('/users/:id', async ctx => {
+  const { id } = ctx.params
+  const user = await User.findById(id)
+  ctx.body = user
+})
+
 r.post('/users', async ctx => {
   const { body } = ctx.request
   const user = await User.create(body)
@@ -31,6 +37,13 @@ r.post('/users', async ctx => {
 r.del('/users/:id', async ctx => {
   const { id } = ctx.params
   const user = await User.findByIdAndDelete(id)
+  ctx.body = user
+})
+
+r.put('/users/:id', async ctx => {
+  const { id } = ctx.params
+  const { body } = ctx.request
+  const user = await User.findByIdAndUpdate(id, body, { new: true })
   ctx.body = user
 })
 
