@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "sync": "git reset --hard origin/master && git pull",
     "dev": "nodemon -e js --watch src src/index.js"
   },
   "keywords": [],
