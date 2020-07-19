@@ -30,3 +30,6 @@ GET {{host}}/auth/profile
 ###
 
 POST {{host}}/auth/logout
+
+###
+GET {{host}}/auth/posts
