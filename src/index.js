@@ -18,7 +18,12 @@ r.get('/', ctx => {
 })
 
 r.get('/users', async ctx => {
-  const users = await User.find()
+  const { name } = ctx.query
+  const find = {}
+  if (name) {
+    find.name = name
+  }
+  const users = await User.find(find, { password: 0 })
   ctx.body = users
 })
 
