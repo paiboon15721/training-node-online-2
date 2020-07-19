@@ -1,5 +1,10 @@
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const { promisify } = require('util')
 const { User } = require('mongoose').models
+
+const jwtSign = promisify(jwt.sign)
+const jwtVerify = promisify(jwt.verify)
 
 module.exports = r => {
   r.post('/auth/register', async ctx => {
@@ -16,7 +21,34 @@ module.exports = r => {
   })
 
   r.post('/auth/login', async ctx => {
-    ctx.body = 'login'
+    const { body } = ctx.request
+    const user = await User.findOne({ email: body.email })
+    if (!user) {
+      ctx.status = 400
+      ctx.body = 'Email or password is invalid'
+      return
+    }
+
+    const result = await bcrypt.compare(body.password, user.password)
+
+    if (!result) {
+      ctx.status = 400
+      ctx.body = 'Email or password is invalid'
+      return
+    }
+
+    const token = await jwtSign(
+      {
+        id: user._id,
+        email: user.email,
+        name: user.name,
+      },
+      process.env.JWT_SECRET,
+    )
+
+    ctx.cookies.set('jwt', token)
+
+    ctx.body = { token }
   })
 
   r.post('/auth/logout', async ctx => {
