@@ -11,6 +11,12 @@ Content-Type: application/json
 
 ###
 POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test1@gmail.com",
+  "password": "mypassword"
+}
 
 ###
 POST {{host}}/auth/logout
