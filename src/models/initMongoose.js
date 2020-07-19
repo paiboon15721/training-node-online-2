@@ -5,13 +5,9 @@ require('./post')
 
 const { MONGO_HOST, MONGO_PASSWORD, MONGO_USER } = process.env
 
-const user = 'paiboon'
-const dbName = `blogs${user}`
-
-const mongoUrl = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/${dbName}?retryWrites=true&w=majority`
-
-const initMongoose = () =>
+const initMongoose = dbName =>
   new Promise((resolve, reject) => {
+    const mongoUrl = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/${dbName}?retryWrites=true&w=majority`
     mongoose
       .connect(mongoUrl, {
         useUnifiedTopology: true,
@@ -25,7 +21,7 @@ const initMongoose = () =>
       })
 
     mongoose.connection.once('open', async () => {
-      console.log('Database connected')
+      console.log(`Database connect on ${dbName}`)
       return resolve()
     })
   })

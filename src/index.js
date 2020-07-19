@@ -11,8 +11,10 @@ app.use(bodyParser())
 app.use(logger())
 app.use(r.routes())
 
+const user = 'paiboon'
+const dbName = `blogs${user}`
 const port = 3000
-initMongoose().then(() => {
+initMongoose(dbName).then(() => {
   app.listen(port, () => {
     console.log(`Server listen on port ${port}`)
   })

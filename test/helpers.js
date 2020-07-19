@@ -1,7 +1,11 @@
-// const initMongoose = require('../src/models/initMongoose')
+require('dotenv').config()
+const initMongoose = require('../src/models/initMongoose')
+
+const user = 'paiboon'
+const dbName = `blogs${user}_test`
 
 before(async () => {
-  console.log('before')
+  const mongoose = await initMongoose(dbName)
 })
 
 beforeEach(async () => {
