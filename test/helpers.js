@@ -15,5 +15,5 @@ beforeEach(async () => {
 })
 
 after(() => {
-  // mongoose.models = {}
+  mongoose.models = {}
 })

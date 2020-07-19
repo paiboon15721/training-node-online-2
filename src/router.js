@@ -3,7 +3,7 @@ const post = require('./components/post/controllers')
 const user = require('./components/user/controllers')
 const auth = require('./components/auth/controllers')
 
-const r = new Router()
+const r = new Router({ prefix: '/api' })
 
 post(r)
 user(r)

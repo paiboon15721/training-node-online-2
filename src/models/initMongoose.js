@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-require('./user')
 require('./post')
+require('./user')
 
 const { MONGO_HOST, MONGO_PASSWORD, MONGO_USER } = process.env
 
