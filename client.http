@@ -35,3 +35,16 @@ Content-Type: application/json
   "password": "edit password",
   "name": "test"
 }
+
+###
+GET {{host}}/posts
+
+###
+
+POST {{host}}/posts
+Content-Type: application/json
+
+{
+  "title": "mytitle",
+  "detail": "mydetail"
+}
