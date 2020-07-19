@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nodemon --exec mocha --recursive",
     "sync": "git reset --hard origin/master && git pull",
     "dev": "nodemon -e js --watch src src/index.js"
   },
@@ -12,9 +12,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
+    "mocha": "^8.0.1",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
