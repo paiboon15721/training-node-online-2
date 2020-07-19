@@ -1,4 +1,11 @@
-require('dotenv').config()
+const bcrypt = require('bcrypt')
 
-console.log(process.env.MONGO_PASSWORD)
-console.log(process.env.MONGO_HOST)
+const app = async () => {
+  const hash = await bcrypt.hash('mypassword', 10)
+  console.log(hash)
+
+  const result = await bcrypt.compare('mypasswordd', hash)
+  console.log(result)
+}
+
+app()
