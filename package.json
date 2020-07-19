@@ -16,5 +16,9 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "koa": "^2.13.0",
+    "mongoose": "^5.9.25"
   }
 }
