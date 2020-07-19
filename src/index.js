@@ -23,7 +23,7 @@ r.get('/users', async ctx => {
 })
 
 r.post('/users', async ctx => {
-  const { body } = ctx.request.body
+  const { body } = ctx.request
   const user = await User.create(body)
   ctx.body = user
 })
