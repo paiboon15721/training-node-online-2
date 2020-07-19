@@ -2,6 +2,7 @@ const Koa = require('koa')
 const logger = require('koa-logger')
 const Router = require('koa-router')
 const mongoose = require('mongoose')
+const bodyParser = require('koa-bodyparser')
 const initMongoose = require('./models/initMongoose')
 require('./models/user')
 
@@ -9,6 +10,8 @@ const { User } = mongoose.models
 
 const app = new Koa()
 const r = new Router()
+
+app.use(bodyParser())
 
 r.get('/', ctx => {
   ctx.body = 'hello worldd'
@@ -19,12 +22,14 @@ r.get('/users', async ctx => {
   ctx.body = users
 })
 
+r.post('/users', async ctx => {
+  const { body } = ctx.request.body
+  const user = await User.create(body)
+  ctx.body = user
+})
+
 app.use(logger())
 app.use(r.routes())
-
-app.use(ctx => {
-  ctx.body = 'hello word'
-})
 
 const port = 3000
 initMongoose().then(() => {
