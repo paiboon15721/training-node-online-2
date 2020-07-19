@@ -4,4 +4,4 @@ GET {{host}}
 
 ###
 
-POST {{host}}/users
+GET {{host}}/users
