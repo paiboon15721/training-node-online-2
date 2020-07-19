@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
 
+require('./user')
+require('./post')
+
 const user = 'paiboon'
 const password = 'mypassword'
 const dbName = `blogs${user}`

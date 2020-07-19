@@ -2,8 +2,6 @@ const Koa = require('koa')
 const logger = require('koa-logger')
 const bodyParser = require('koa-bodyparser')
 const initMongoose = require('./models/initMongoose')
-require('./models/user')
-require('./models/post')
 const r = require('./router')
 
 const app = new Koa()
