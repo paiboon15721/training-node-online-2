@@ -22,7 +22,7 @@ const initMongoose = dbName =>
 
     mongoose.connection.once('open', async () => {
       console.log(`Database connect on ${dbName}`)
-      return resolve()
+      return resolve(mongoose)
     })
   })
 

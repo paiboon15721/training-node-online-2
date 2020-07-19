@@ -4,14 +4,16 @@ const initMongoose = require('../src/models/initMongoose')
 const user = 'paiboon'
 const dbName = `blogs${user}_test`
 
+let mongoose
+
 before(async () => {
-  const mongoose = await initMongoose(dbName)
+  mongoose = await initMongoose(dbName)
 })
 
 beforeEach(async () => {
-  console.log('before Each')
+  await mongoose.connection.dropDatabase()
 })
 
 after(() => {
-  console.log('after')
+  // mongoose.models = {}
 })
