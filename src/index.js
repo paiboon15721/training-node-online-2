@@ -28,6 +28,12 @@ r.post('/users', async ctx => {
   ctx.body = user
 })
 
+r.del('/users/:id', async ctx => {
+  const { id } = ctx.params
+  const user = await User.findByIdAndDelete(id)
+  ctx.body = user
+})
+
 app.use(logger())
 app.use(r.routes())
 

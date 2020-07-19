@@ -16,3 +16,7 @@ Content-Type: application/json
   "password": "testpassword",
   "name": "test"
 }
+
+###
+
+DELETE {{host}}/users/5f13c6ec9cdf4030c071252c
