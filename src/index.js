@@ -1,13 +1,12 @@
-const mongoose = require('mongoose')
+const Koa = require('koa')
 
-const user = 'paiboon'
-const password = 'mypassword'
-const dbName = `blogs${user}`
+const app = new Koa()
 
-const mongoUrl = `mongodb+srv://paiboon15721:${password}@cluster0.sqx0p.mongodb.net/${dbName}?retryWrites=true&w=majority`
+app.use(ctx => {
+  ctx.body = 'hello word'
+})
 
-mongoose.connect(mongoUrl)
-
-mongoose.connection.once('open', () => {
-  console.log('Database connected')
+const port = 3000
+app.listen(port, () => {
+  console.log(`Server listen on port ${port}`)
 })
